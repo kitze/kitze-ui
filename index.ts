@@ -1,5 +1,3 @@
-import "./styles/global.css";
-
 export * as ui from "./components/ui";
 export * from "./components/custom-ui";
 export * from "./components/random";
