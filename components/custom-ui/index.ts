@@ -9,3 +9,5 @@ export * from "./Pills";
 export * from "./Checkbox";
 export * from "./ConditionalTooltip";
 export * from "./MobileHeader";
+export * from "./Modal";
+export * from "./ResponsiveModal";
