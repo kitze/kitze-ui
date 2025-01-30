@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+.debug {
+  @apply !border !border-red-500;
+}
+
+body[class*="sizzy"] .debug-green {
+  @apply border border-green-500;
+}
+
+body[class*="sizzy"] .debug-blue {
+  @apply border border-blue-500;
+}
+
+body[class*="sizzy"] .debug-orange {
+  @apply border border-orange-500;
+}
+
+body[class*="sizzy"] .debug-purple {
+  @apply border border-purple-500;
+}
+
+body[class*="sizzy"] .debug-2 {
+  @apply outline outline-1 outline-red-500;
+}
+
+.horizontal {
+  @apply flex flex-row;
+}
+
+.vertical {
+  @apply flex flex-col;
+}
+
+.horizontal.center-v {
+  @apply items-center;
+}
+.horizontal.center-h {
+  @apply justify-center;
+}
+
+.horizontal.center {
+  @apply justify-center items-center;
+}
+
+.vertical.center-v {
+  @apply justify-center;
+}
+
+.vertical.center-h {
+  @apply items-center;
+}
+
+.vertical.center {
+  @apply justify-center items-center;
+}
+
+.v.center {
+  @apply justify-center items-center;
+}
+
+.space-between {
+  @apply justify-between;
+}
+
+.circle {
+  @apply rounded-full shrink-0;
+}
+
+.z-max {
+  z-index: 99999999;
+}
+
+.center-ffs {
+  @apply flex justify-center items-center text-center align-middle m-auto;
+}
+
+.hide-on-mobile {
+  @apply hidden sm:flex;
+}
+
+.only-on-mobile {
+  @apply flex sm:hidden;
+}
+
+.wrap {
+  @apply flex flex-wrap;
+}
+
+.animated-icon-on-hover {
+  @apply transition-all duration-200 md:group-hover:rotate-6 md:group-hover:scale-110;
+}
+
+.show-on-group-hover {
+  @apply opacity-0 group-hover:opacity-100 transition-all duration-200;
+}
+
+.card {
+  @apply text-zinc-700 dark:text-zinc-100 bg-zinc-200 md:hover:bg-zinc-300 dark:bg-white p-2 md:cursor-pointer rounded-lg transition-all duration-200 md:hover:scale-[101%];
+}
+
+.card-no-hover {
+  @apply text-zinc-700 bg-zinc-100 dark:text-zinc-100 dark:bg-white p-2 rounded-lg transition-all duration-200;
+}
+
+.transition {
+  @apply transition-all duration-150;
+}
+
+.hoverable {
+  @apply opacity-80 transition-all duration-100 ease-in-out hover:opacity-100 hover:scale-[1.05];
+}
+
+.clickable {
+  @apply cursor-pointer active:scale-[0.90] opacity-80 transition-all duration-100 ease-in-out;
+}
+
+.on-parent-hover {
+  @apply md:opacity-0 group-hover:opacity-100 transition-all duration-100;
+}
+
+.text-color-auto {
+  @apply text-zinc-600 dark:text-zinc-300;
+}
+
+.bg-auto {
+  @apply bg-zinc-50 dark:bg-white/5;
+}
+
+.text-color-auto-inverse {
+  @apply text-zinc-300 dark:text-zinc-600;
+}
+
+.icon-color-auto {
+  @apply stroke-zinc-500 dark:stroke-zinc-400;
+}
+
+.icon-fill-auto {
+  @apply fill-zinc-500 dark:fill-zinc-400;
+}
+
+.h {
+  @apply flex flex-row space-x-2 items-center;
+}
+
+.v {
+  @apply flex flex-col space-y-2;
+}
