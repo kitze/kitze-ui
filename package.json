@@ -14,7 +14,7 @@
     "build": "tsup",
     "rebuild": "nr clean && nr build",
     "reinstall": "rm -rf node_modules && ni",
-    "clean": "rm -rf dist",
+    "clean": "node scripts/clean.js",
     "watch-build": "tsup --watch",
     "watch-dist": "tsc-watch --onSuccess 'yalc push --sig'",
     "dev": "nr watch-build & nr watch-dist",
