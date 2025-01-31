@@ -1,6 +1,6 @@
 {
   "name": "@kitze/ui",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "main": "./dist/index.js",
   "files": [
     "dist"
@@ -14,7 +14,7 @@
     "build": "tsup",
     "rebuild": "nr clean && nr build",
     "reinstall": "rm -rf node_modules && ni",
-    "dev": "tsup --watch --onSuccess 'yalc push --sig'",
+    "dev": "bash scripts/dev.sh",
     "bump": "npm version patch && npm publish",
     "preview": "cd preview && npm run dev",
     "storybook": "BROWSER=none storybook dev -p 6006",
@@ -57,12 +57,14 @@
     "@storybook/test": "^8.5.2",
     "autoprefixer": "^10.4.14",
     "chokidar": "^3.5.3",
+    "nodemon": "^3.1.0",
     "postcss": "^8.5.1",
     "storybook": "^8.5.2",
     "storybook-dark-mode": "^4.0.2",
     "tsc-watch": "^6.0.4",
     "tsup": "^8.3.5",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "peerDependencies": {
     "next": "^15.1.6",

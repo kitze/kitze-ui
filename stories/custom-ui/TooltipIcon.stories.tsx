@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { HelpTooltipIcon } from "../../components/custom-ui/HelpTooltipIcon";
+import { HelpTooltipIcon } from "../../src/components/custom-ui/HelpTooltipIcon";
 
 const meta = {
   title: "Custom UI/HelpTooltipIcon",

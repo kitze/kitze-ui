@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { SegmentedControl } from "../../components/custom-ui/SegmentedControl";
+import { SegmentedControl } from "../../src/components/custom-ui/SegmentedControl";
 import { HiHome, HiUser, HiCog, HiHeart, HiMail } from "react-icons/hi";
 
 const meta = {

@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { SimpleContextMenu } from "../../components/custom-ui/ContextMenu/SimpleContextMenu";
-import { CustomButton } from "../../components/custom-ui/CustomButton";
-import { ContextCustomMenuItemDelete } from "../../components/custom-ui/ContextMenu/ContextCustomMenuItemDelete";
-import { ContextCustomMenuItem } from "../../components/custom-ui/ContextMenu/ContextCustomMenuItem";
+import { SimpleContextMenu } from "../../src/components/custom-ui/ContextMenu/SimpleContextMenu";
+import { CustomButton } from "../../src/components/custom-ui/CustomButton";
+import { ContextCustomMenuItemDelete } from "../../src/components/custom-ui/ContextMenu/ContextCustomMenuItemDelete";
+import { ContextCustomMenuItem } from "../../src/components/custom-ui/ContextMenu/ContextCustomMenuItem";
 
 import { HiPencil, HiDuplicate, HiShare, HiCheck } from "react-icons/hi";
-import { ContextCustomMenuItemEdit } from "../../components/custom-ui/ContextMenu/ContextCustomMenuItemEdit";
+import { ContextCustomMenuItemEdit } from "../../src/components/custom-ui/ContextMenu/ContextCustomMenuItemEdit";
 
 const meta = {
   title: "Custom UI/SimpleContextMenu",

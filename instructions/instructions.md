@@ -1,5 +1,7 @@
 when allowing components to be customized with classNames, use an optional classNames object and then allow all the parts of the component to be customized (using the cn utility)
 
+- Don't bother with multiple classNames if the component has ONE part (like a simple button )
+
 IMPORTANT: components shouldn't use default exports.
 they should also export props from the file i.e export const Sidebar and export const SidebarProps
 

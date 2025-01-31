@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { CustomButton } from "../../components/custom-ui/CustomButton";
+import { CustomButton } from "../../src/components/custom-ui/CustomButton";
 import { HiArrowRight, HiMail, HiPlus, HiTrash } from "react-icons/hi";
 
 const meta = {

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Kbd } from "../../components/custom-ui/Kbd";
+import { Kbd } from "../../src/components/custom-ui/Kbd";
 
 const meta = {
   title: "Custom UI/Kbd",

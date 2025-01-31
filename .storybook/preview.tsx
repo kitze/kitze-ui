@@ -2,8 +2,8 @@ import React from "react";
 import { useDarkMode } from "storybook-dark-mode";
 import type { Preview } from "@storybook/react";
 import { themes } from "@storybook/theming";
-import "../styles/global.css";
-import { cn } from "../cn";
+import "../src/styles/global.css";
+import { cn } from "../src/cn";
 
 // Create a decorator that adds dark mode class
 const withThemeProvider = (Story: any) => {

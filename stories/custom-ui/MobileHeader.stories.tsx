@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MobileHeader } from "../../components/custom-ui/MobileHeader";
+import { MobileHeader } from "../../src/components/custom-ui/MobileHeader";
 
 const meta = {
   title: "Custom UI/MobileHeader",

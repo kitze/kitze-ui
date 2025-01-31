@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ActionIcon } from "../../components/custom-ui/ActionIcon";
+import { ActionIcon } from "../../src/components/custom-ui/ActionIcon";
 import { HiHeart, HiHome, HiCog, HiTrash, HiMail } from "react-icons/hi";
 
 const meta = {
@@ -73,7 +73,7 @@ export const CustomStyles: Story = {
     iconSize: 20,
     tooltip: "Delete item",
     classNames: {
-      wrapper: "bg-red-100 hover:bg-red-200",
+      root: "bg-red-100 hover:bg-red-200",
       icon: "text-red-600",
     },
   },

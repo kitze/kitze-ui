@@ -1,4 +1,6 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+import { mergeConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 const config: StorybookConfig = {
   stories: [
@@ -15,6 +17,14 @@ const config: StorybookConfig = {
   framework: {
     name: "@storybook/react-vite",
     options: {},
+  },
+  viteFinal: async (config) => {
+    return mergeConfig(config, {
+      plugins: [tsconfigPaths()],
+      define: {
+        "process.env": {},
+      },
+    });
   },
 };
 export default config;
