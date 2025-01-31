@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "../../components/custom-ui/Button";
+import { Button } from "../../components/ui/Button";
 
 const meta = {
-  title: "Custom UI/Button",
+  title: "UI/Button",
   component: Button,
   parameters: {
     layout: "centered",
@@ -30,7 +30,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     children: "Primary Button",
-    variant: "primary",
+    variant: "default",
   },
 };
 
@@ -51,14 +51,14 @@ export const Outline: Story = {
 export const Small: Story = {
   args: {
     children: "Small Button",
-    size: "small",
+    size: "sm",
   },
 };
 
 export const Large: Story = {
   args: {
     children: "Large Button",
-    size: "large",
+    size: "lg",
   },
 };
 

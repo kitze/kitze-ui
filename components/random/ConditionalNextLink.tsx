@@ -1,7 +1,20 @@
 import React from "react";
 import { ReactFC } from "../../types";
 import { cn } from "../../cn";
-import Link from "next/link";
+
+let Link: any;
+(async () => {
+  try {
+    const nextLink = await import("next/link");
+    Link = nextLink.default;
+  } catch {
+    Link = ({ href, children, ...props }: any) => (
+      <a href={href} {...props}>
+        {children}
+      </a>
+    );
+  }
+})();
 
 export interface ConditionalNextLinkClassNames {
   link?: string;
