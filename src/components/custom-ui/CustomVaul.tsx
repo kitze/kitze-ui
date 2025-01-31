@@ -58,13 +58,13 @@ export const CustomVaul: ReactFC<CustomVaulProps> = ({
         <Drawer.Portal>
           <Drawer.Overlay
             className={cn(
-              "fixed inset-0 bg-black/40 backdrop-blur-md dark:bg-black/60 z-[9999]",
+              "fixed inset-0 bg-black/40 backdrop-blur-md dark:bg-black/60 z-40",
               classNames?.overlay
             )}
           />
           <Drawer.Content
             className={cn(
-              "bg-white dark:bg-gray-900 w-[95%] flex flex-col rounded-t-[10px] py-6 fixed bottom-0 left-0 right-0 z-[9999] mx-auto",
+              "bg-white dark:bg-gray-900 w-[95%] flex flex-col rounded-t-[10px] py-6 fixed bottom-0 left-0 right-0 z-50 mx-auto",
               "dark:border-t dark:border-gray-800",
               classNames?.content
             )}

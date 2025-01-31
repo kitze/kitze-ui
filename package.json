@@ -1,6 +1,6 @@
 {
   "name": "@kitze/ui",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "main": "./dist/index.js",
   "files": [
     "dist"
@@ -15,10 +15,10 @@
     "rebuild": "nr clean && nr build",
     "reinstall": "rm -rf node_modules && ni",
     "dev": "bash scripts/dev.sh",
-    "bump": "npm version patch && npm publish",
     "preview": "cd preview && npm run dev",
     "storybook": "BROWSER=none storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "bump": "node scripts/bump.cjs"
   },
   "keywords": [],
   "author": "",

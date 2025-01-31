@@ -1,8 +1,8 @@
-import { ReactElement, ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 import { CustomVaul } from "./CustomVaul";
 import { HiMenu } from "react-icons/hi";
 import { cn } from "@/cn";
-import { useMeasureElement, useScrolledPast } from "@kitze/utils";
+import { useScrolledPast } from "@kitze/utils";
 import { ReactFC } from "../../types";
 import { ActionIcon } from "./ActionIcon";
 
@@ -16,7 +16,7 @@ export interface MobileHeaderClassNames {
 }
 
 export interface MobileHeaderProps {
-  leftSide?: ReactElement;
+  leftSide?: ReactNode;
   middle?: ReactNode;
   drawerContent?: ReactNode;
   classNames?: MobileHeaderClassNames;
@@ -59,7 +59,7 @@ export const MobileHeader: ReactFC<MobileHeaderProps> = ({
         height: headerHeight,
       }}
       className={cn(
-        "fixed top-0 left-0 right-0 w-full z-50 vertical center",
+        "fixed top-0 left-0 right-0 w-full z-30 vertical center",
         "bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl transition-all duration-200",
         "text-gray-900 dark:text-gray-100",
         isScrolled && "shadow-sm",

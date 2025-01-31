@@ -4,6 +4,7 @@ import { ConditionalWrap } from "../random/ConditionalWrap";
 import Link from "next/link";
 import { useVaul } from "./VaulContext";
 import { IconType } from "react-icons";
+import { ReactFC } from "@/types";
 
 export interface VaulMenuItemClassNames {
   root?: string;
@@ -21,7 +22,7 @@ export interface VaulMenuItemProps {
   closeOnClick?: boolean;
 }
 
-export const VaulMenuItem = ({
+export const VaulMenuItem: ReactFC<VaulMenuItemProps> = ({
   href,
   icon: Icon,
   title,
@@ -29,7 +30,7 @@ export const VaulMenuItem = ({
   iconColorClass,
   classNames = {},
   closeOnClick,
-}: VaulMenuItemProps) => {
+}) => {
   const vaulContext = useVaul();
 
   const handleClick = () => {

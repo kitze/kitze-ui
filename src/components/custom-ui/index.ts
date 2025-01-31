@@ -12,6 +12,8 @@ export * from "./ActionIcon";
 export * from "./CustomButton";
 export * from "./Kbd";
 export * from "./SegmentedControl";
+export * from "./CustomCheckbox";
+
 //conditionals
 export * from "./ConditionalTooltip";
 export * from "./Accordion";
@@ -24,3 +26,5 @@ export * from "./ContextMenu/ContextCustomMenuItemDelete";
 export * from "./HelpTooltipIcon";
 
 export * from "./VaulMenuItem";
+
+export * from "./CustomCheckbox";
