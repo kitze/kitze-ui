@@ -28,3 +28,11 @@ import { cn } from "@kitze/ui"
   The new React.FC in react 19 is annoying. so we use a custom one, always.
 
 import { ReactFC } from "@kitze/ui"
+
+### extracting to @kitze/ui
+
+- if you're extracting new components or creating new components inside @kitze/ui you need to pay attention that imports are:
+- import { cn } from "@/cn";
+- import {ReactFC} from '@/types";
+- also if you add a new component you have to export it in the relevant /index.tsx file so then projects can use it
+- if you add a new component (or update an old component) make sure to update the storybook stories

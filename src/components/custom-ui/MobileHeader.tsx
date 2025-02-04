@@ -64,12 +64,9 @@ export const MobileHeader: ReactFC<MobileHeaderProps> = ({
       className={cn(
         "fixed top-0 left-0 right-0 w-full z-30 vertical center",
         "backdrop-blur-xl transition-all duration-200",
-        "text-gray-900 dark:text-gray-100 ",
+        "text-foreground/80 ",
         isScrolled &&
-          cn(
-            "shadow-sm bg-white/80 dark:bg-gray-950/80",
-            classNames?.pastScrolled
-          ),
+          cn("shadow-sm dark:bg-background/80", classNames?.pastScrolled),
         classNames?.root
       )}
     >

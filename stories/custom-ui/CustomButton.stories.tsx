@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { CustomButton } from "../../src/components/custom-ui/CustomButton";
 import { HiArrowRight, HiMail, HiPlus, HiTrash } from "react-icons/hi";
+import { useState } from "react";
+import { FiCheck, FiDownload } from "react-icons/fi";
 
 const meta = {
   title: "Custom UI/CustomButton",
@@ -98,6 +100,105 @@ export const Sizes: Story = {
       </CustomButton>
     </div>
   ),
+};
+
+export const LoadingStates: Story = {
+  render: () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    const handleClick = async () => {
+      setIsLoading(true);
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      setIsSuccess(true);
+      setIsLoading(false);
+      setTimeout(() => setIsSuccess(false), 2000);
+    };
+
+    return (
+      <div className="flex flex-col gap-4">
+        <CustomButton loading>Loading Button</CustomButton>
+        <CustomButton
+          loading={isLoading}
+          onClick={handleClick}
+          leftIcon={isSuccess ? FiCheck : undefined}
+          variant={isSuccess ? "success" : "default"}
+        >
+          {isSuccess ? "Success!" : "Click me"}
+        </CustomButton>
+        <CustomButton loading variant="outline">
+          Loading Outline
+        </CustomButton>
+        <CustomButton loading variant="secondary">
+          Loading Secondary
+        </CustomButton>
+      </div>
+    );
+  },
+};
+
+export const CustomSides: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <CustomButton
+        leftSide={
+          <div className="flex items-center gap-2">
+            <FiDownload className="size-4" />
+            <span className="text-xs text-muted-foreground">2.5MB</span>
+          </div>
+        }
+      >
+        Download File
+      </CustomButton>
+      
+      <CustomButton
+        variant="outline"
+        rightSide={
+          <span className="ml-2 rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+            New
+          </span>
+        }
+      >
+        Feature
+      </CustomButton>
+
+      <CustomButton
+        variant="secondary"
+        leftSide={
+          <img
+            src="https://github.com/shadcn.png"
+            alt="avatar"
+            className="size-5 rounded-full"
+          />
+        }
+      >
+        View Profile
+      </CustomButton>
+    </div>
+  ),
+};
+
+export const LoadingWithCustomSides: Story = {
+  render: () => {
+    const [isLoading, setIsLoading] = useState(false);
+
+    return (
+      <div className="flex flex-col gap-4">
+        <CustomButton
+          loading={isLoading}
+          onClick={() => setIsLoading((prev) => !prev)}
+          leftSide={
+            <div className="flex items-center gap-2">
+              <FiDownload className="size-4" />
+              <span className="text-xs text-muted-foreground">2.5MB</span>
+            </div>
+          }
+        >
+          Toggle Loading
+        </CustomButton>
+      </div>
+    );
+  },
 };
 
 export const Disabled: Story = {
