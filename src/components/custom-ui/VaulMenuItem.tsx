@@ -44,9 +44,8 @@ export const VaulMenuItem: ReactFC<VaulMenuItemProps> = ({
     <div
       className={cn(
         "flex items-center gap-4 px-4 py-4",
-        "text-gray-700 dark:text-gray-100",
-        "active:bg-gray-100 dark:active:bg-gray-800",
-        "border-b border-gray-100 dark:border-gray-800",
+        "text-foreground",
+        "active:bg-muted",
         "touch-manipulation",
         classNames.root
       )}
@@ -55,7 +54,7 @@ export const VaulMenuItem: ReactFC<VaulMenuItemProps> = ({
       {Icon && (
         <div
           className={cn(
-            "text-xl text-gray-600 dark:text-gray-300",
+            "text-xl text-muted-foreground",
             iconColorClass,
             classNames.icon
           )}
@@ -64,10 +63,7 @@ export const VaulMenuItem: ReactFC<VaulMenuItemProps> = ({
         </div>
       )}
       <span
-        className={cn(
-          "text-lg font-medium text-gray-700 dark:text-gray-100",
-          classNames.title
-        )}
+        className={cn("text-lg font-medium text-foreground", classNames.title)}
       >
         {title}
       </span>

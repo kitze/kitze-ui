@@ -13,6 +13,7 @@ export interface MobileHeaderClassNames {
   middle?: string;
   rightSide?: string;
   menuButton?: string;
+  pastScrolled?: string;
 }
 
 export interface MobileHeaderProps {
@@ -20,8 +21,10 @@ export interface MobileHeaderProps {
   middle?: ReactNode;
   drawerContent?: ReactNode;
   classNames?: MobileHeaderClassNames;
+  height?: number;
   renderRightSide?: (props: {
     menuButton: ReactNode;
+    drawerContent: ReactNode;
     menuTrigger: (children: ReactNode) => ReactNode;
   }) => ReactNode;
 }
@@ -32,9 +35,9 @@ export const MobileHeader: ReactFC<MobileHeaderProps> = ({
   drawerContent,
   classNames,
   renderRightSide,
+  height = 80,
 }) => {
-  const headerHeight = 80;
-  const isScrolled = useScrolledPast(headerHeight);
+  const isScrolled = useScrolledPast(height);
   const [isOpen, setIsOpen] = useState(false);
 
   const menuButton = (
@@ -56,13 +59,17 @@ export const MobileHeader: ReactFC<MobileHeaderProps> = ({
   return (
     <div
       style={{
-        height: headerHeight,
+        height: height,
       }}
       className={cn(
         "fixed top-0 left-0 right-0 w-full z-30 vertical center",
-        "bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl transition-all duration-200",
-        "text-gray-900 dark:text-gray-100",
-        isScrolled && "shadow-sm",
+        "backdrop-blur-xl transition-all duration-200",
+        "text-gray-900 dark:text-gray-100 ",
+        isScrolled &&
+          cn(
+            "shadow-sm bg-white/80 dark:bg-gray-950/80",
+            classNames?.pastScrolled
+          ),
         classNames?.root
       )}
     >
@@ -82,7 +89,7 @@ export const MobileHeader: ReactFC<MobileHeaderProps> = ({
 
         <div className={cn("flex-1 flex justify-end", classNames?.rightSide)}>
           {renderRightSide
-            ? renderRightSide({ menuButton, menuTrigger })
+            ? renderRightSide({ menuButton, drawerContent, menuTrigger })
             : menuTrigger(drawerContent)}
         </div>
       </div>

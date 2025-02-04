@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ReactFC } from "../../types";
 import { Modal } from "./Modal";
 import { CustomVaul } from "./CustomVaul";
 import { cn } from "@/cn";
+import { useKitzeUI } from "../../context/KitzeUIContext";
 
 interface ResponsiveModalProps {
   trigger?: React.ReactNode;
@@ -16,18 +17,8 @@ interface ResponsiveModalProps {
 }
 
 export const ResponsiveModal: ReactFC<ResponsiveModalProps> = (props) => {
-  const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
-
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  const { isMobile } = useKitzeUI();
 
   if (isMobile) {
     return (

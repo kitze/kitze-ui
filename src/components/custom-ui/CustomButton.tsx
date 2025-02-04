@@ -2,7 +2,10 @@ import { IconType } from "react-icons";
 import { Button, ButtonProps } from "../ui/Button";
 import { cn } from "@/cn";
 import { ReactFC } from "../../types";
-import Link from "next/link";
+import {
+  useLinkableComponent,
+  LinkableProps,
+} from "../../hooks/useLinkableComponent";
 
 export interface CustomButtonClassNames {
   root?: string;
@@ -10,12 +13,11 @@ export interface CustomButtonClassNames {
 }
 
 export interface CustomButtonProps
-  extends Omit<ButtonProps, "classNames" | "as"> {
+  extends Omit<ButtonProps, "classNames" | "as">,
+    LinkableProps {
   leftIcon?: IconType;
   rightIcon?: IconType;
   classNames?: CustomButtonClassNames;
-  href?: string;
-  external?: boolean;
 }
 
 export const CustomButton: ReactFC<CustomButtonProps> = ({
@@ -28,23 +30,22 @@ export const CustomButton: ReactFC<CustomButtonProps> = ({
   external,
   ...props
 }) => {
-  let buttonProps = { ...props };
-  if (href) {
-    buttonProps = {
-      ...buttonProps,
-      ...(external && {
-        target: "_blank",
-        rel: "noopener noreferrer",
-      }),
-    };
-  }
+  const {
+    Component,
+    href: linkHref,
+    linkProps,
+  } = useLinkableComponent({
+    href,
+    external,
+    ...props,
+  });
 
   return (
     <Button
-      href={href}
-      as={href ? (external ? "a" : Link) : "button"}
+      href={linkHref}
+      as={(Component || "button") as any}
       className={cn("gap-1.5", className)}
-      {...buttonProps}
+      {...linkProps}
     >
       {LeftIcon && <LeftIcon className={cn("h-4 w-4", classNames.icon)} />}
       {children}
