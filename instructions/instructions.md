@@ -9,16 +9,24 @@ they should also export props from the file i.e export const Sidebar and export 
 
 ### icons
 
-for icons we use react-icons. so always try to refactor any imports you find from @tabler/react-icons or 'lucide-icons' into the appropriate react-icons/tb or react-icons/lu import
+for icons we use react-icons. ALWAYS. don't use tabler icons or lucide icons or heroicons directly. so always try to refactor any imports you find from @tabler/react-icons or 'lucide-icons' into the appropriate react-icons/tb or react-icons/lu import
 
 ### tailwind
 
 - we use utils from @tailwind.css
-- we prefer v/h classnames (which center things properly and add spacing by default) instead of flex flex-col etc. syntax
-- we use cn for conditional styles (if needed, and prefer the cn object syntax)
+- clases NOT TO USE: flex, col, row, items-center, justify-center, etc.
+- classes to use:
+- "v" if you need flex vertical, with space-y-2
+- "h" if you need flex horizontal, with space-x-2
+- 'vertical' if you need flex vertical with custom space-y-
+- 'horizontal' if you need flex horizontal with custom space-x-
+- DO NOT INVENT CLASSES LIKE v-10 and h-20, they don't exist
+- we use cn for conditional styles (if needed, and prefer the cn object syntax like cn('default-classes-here', {
+  'some-classes-here': booleanCondition
+  }))
 - we have to support dark mode. we use "foreground" and "background" colors with variations like bg-foreground/50 when needed, instead of hardcoding to shades of black/white
 - when you REALLY need to hardcode to gray, use the 'zinc' color and not 'gray'
-- almost _NEVER_ use margins !!! always use "v" or "h" from tailwind.css along with space-x or space-y when you need to space something
+- _NEVER_ use margins !!! v/h/horizontal/vertical which will add appropriate spacing to all the children
 
 ### imports
 

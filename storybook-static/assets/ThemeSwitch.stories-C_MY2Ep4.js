@@ -1,0 +1,5 @@
+import{j as c}from"./jsx-runtime-DPtPVAOg.js";import{r as p}from"./index-BAAwwy_G.js";import{T as m}from"./ThemeSwitch-idp8m1P-.js";import"./cn-BQIMLNQW.js";import"./bundle-mjs-BTGVH9Kg.js";import"./index-gKVvS9ls.js";import"./iconBase-GPK5UwVh.js";import"./proxy-mdE-wRji.js";const I={title:"Custom UI/ThemeSwitch",component:m,parameters:{layout:"centered"},tags:["autodocs"]},e=()=>{const[t,r]=p.useState(!1),i=t?"dark":"light";return c.jsx(m,{isDark:t,theme:i,setTheme:n=>r(n==="dark"),toggleTheme:()=>r(!t)})};e.__docgenInfo={description:"",methods:[],displayName:"Interactive"};var s,a,o;e.parameters={...e.parameters,docs:{...(s=e.parameters)==null?void 0:s.docs,source:{originalSource:`() => {
+  const [isDark, setIsDark] = useState(false);
+  const theme = isDark ? "dark" : "light";
+  return <ThemeSwitch isDark={isDark} theme={theme} setTheme={newTheme => setIsDark(newTheme === "dark")} toggleTheme={() => setIsDark(!isDark)} />;
+}`,...(o=(a=e.parameters)==null?void 0:a.docs)==null?void 0:o.source}}};const f=["Interactive"];export{e as Interactive,f as __namedExportsOrder,I as default};

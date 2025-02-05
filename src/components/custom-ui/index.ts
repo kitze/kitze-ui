@@ -44,3 +44,7 @@ export * from "./VaulMenuItemThemeSwitcherNextThemes";
 export * from "../../context/KitzeUIContext";
 
 export * from "./ResponsiveSegmentedControl";
+export * from "./Kanban/index";
+export * from "./Avatar";
+export * from "./Twemoji";
+export * from "./CircleIcon";

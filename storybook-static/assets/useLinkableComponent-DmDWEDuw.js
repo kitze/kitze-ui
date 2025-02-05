@@ -1,0 +1,1 @@
+import{L as s}from"./link-1ozEyCK4.js";function i(o){const{href:n,external:e,...r}=o,t={...r,...e&&{target:"_blank",rel:"noopener noreferrer"}};return{Component:n?e?"a":s:void 0,href:n,linkProps:t}}export{i as u};

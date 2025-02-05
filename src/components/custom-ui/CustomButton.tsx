@@ -58,7 +58,7 @@ export const CustomButton: ReactFC<CustomButtonProps> = ({
     <Button
       href={linkHref}
       as={(Component || "button") as any}
-      className={cn("gap-1.5 relative", className)}
+      className={cn("gap-1.5 cursor-pointer relative", className)}
       disabled={disabled || loading}
       {...linkProps}
       {...props}
@@ -77,7 +77,7 @@ export const CustomButton: ReactFC<CustomButtonProps> = ({
             {showLoadingSpinner ? (
               <Spinner />
             ) : LeftIcon ? (
-              <LeftIcon className={cn("size-4", classNames.icon)} />
+              <LeftIcon className={cn("w-4", classNames.icon)} />
             ) : (
               leftSide
             )}
@@ -106,7 +106,7 @@ export const CustomButton: ReactFC<CustomButtonProps> = ({
             className={cn("flex items-center", classNames.rightSide)}
           >
             {RightIcon ? (
-              <RightIcon className={cn("size-4", classNames.icon)} />
+              <RightIcon className={cn("w-4", classNames.icon)} />
             ) : (
               rightSide
             )}

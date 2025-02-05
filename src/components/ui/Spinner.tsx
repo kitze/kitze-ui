@@ -1,5 +1,55 @@
-import { LuLoader, LuLoaderCircle, LuLoaderPinwheel } from "react-icons/lu";
+import { LuLoader, LuLoaderCircle } from "react-icons/lu";
+import { ImSpinner9 } from "react-icons/im";
+import { cn } from "@/cn";
+import { ReactFC } from "../../types";
 
-export const Spinner = () => {
-  return <LuLoader className="animate-spin" />;
+const variants = {
+  default: LuLoader,
+  circle: LuLoaderCircle,
+  dots: ImSpinner9,
+} as const;
+
+const sizes = {
+  xs: "w-3 h-3",
+  sm: "w-4 h-4",
+  md: "w-5 h-5",
+  lg: "w-6 h-6",
+  xl: "w-8 h-8",
+} as const;
+
+export interface SpinnerProps {
+  /**
+   * The variant of the spinner
+   * @default "default"
+   */
+  variant?: keyof typeof variants;
+
+  /**
+   * The size of the spinner
+   * @default "md"
+   */
+  size?: keyof typeof sizes;
+
+  /**
+   * Optional className for the spinner
+   */
+  className?: string;
+}
+
+export const Spinner: ReactFC<SpinnerProps> = ({ 
+  variant = "default",
+  size = "md",
+  className 
+}) => {
+  const SpinnerIcon = variants[variant];
+
+  return (
+    <SpinnerIcon 
+      className={cn(
+        "animate-spin text-foreground/50",
+        sizes[size],
+        className
+      )} 
+    />
+  );
 };

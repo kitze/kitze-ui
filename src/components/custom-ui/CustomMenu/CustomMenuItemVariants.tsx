@@ -2,7 +2,10 @@ import { ReactFC } from "@/types";
 import { CustomMenuItem, CustomMenuItemProps } from "./CustomMenuItem";
 import { LuPencil, LuTrash2 } from "react-icons/lu";
 
-type CustomMenuItemVariantProps = Omit<CustomMenuItemProps, "icon" | "children"> & {
+type CustomMenuItemVariantProps = Omit<
+  CustomMenuItemProps,
+  "icon" | "children"
+> & {
   children?: React.ReactNode;
 };
 

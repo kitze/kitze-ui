@@ -2,6 +2,10 @@ import { useTheme } from "next-themes";
 import { useHotkeys } from "../../../../utils/src/hooks/useHotkeys";
 import { ReactFC } from "@/types";
 import { ThemeSwitch } from "./ThemeSwitch";
+import {
+  ThemeSwitchMinimal,
+  ThemeSwitchMinimalProps,
+} from "./ThemeSwitchMinimal";
 
 export interface ThemeSwitchNextThemesProps {
   className?: string;
@@ -29,4 +33,11 @@ export const ThemeSwitchNextThemes: ReactFC<ThemeSwitchNextThemesProps> = ({
       className={className}
     />
   );
+};
+
+export const ThemeSwitchNextThemesMinimal: ReactFC<
+  Omit<ThemeSwitchMinimalProps, "theme" | "setTheme">
+> = (props) => {
+  const { theme, setTheme } = useTheme();
+  return <ThemeSwitchMinimal {...props} />;
 };
