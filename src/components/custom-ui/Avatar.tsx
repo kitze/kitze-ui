@@ -2,11 +2,11 @@ import { cn } from "@/cn";
 import { forwardRef } from "react";
 
 const sizeClasses = {
-  xs: "w-6 h-6 text-xs",
-  sm: "w-8 h-8 text-sm",
-  md: "w-10 h-10 text-base",
-  lg: "w-12 h-12 text-lg",
-  xl: "w-14 h-14 text-xl",
+  xs: "size-6 min-w-6 min-h-6 text-xs",
+  sm: "size-8 min-w-8 min-h-8 text-sm",
+  md: "size-12 min-w-12 min-h-12 text-base",
+  lg: "size-16 min-w-16 min-h-16 text-lg",
+  xl: "size-24 min-w-24 min-h-24 text-2xl",
 } as const;
 
 export type AvatarSize = keyof typeof sizeClasses;
@@ -34,7 +34,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
       <div
         ref={ref}
         className={cn(
-          "rounded-full overflow-hidden h flex items-center justify-center bg-foreground/10",
+          "rounded-full overflow-hidden h flex items-center justify-center bg-foreground/10 flex-shrink-0",
           sizeClasses[size],
           className
         )}

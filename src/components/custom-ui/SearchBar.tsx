@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { HiSearch, HiX } from "react-icons/hi";
 import { ReactFC } from "../../types";
+import { useKitzeUI } from "../../context/KitzeUIContext";
 
 interface SearchBarProps {
   value: string;
@@ -19,7 +20,7 @@ export const SearchBar: ReactFC<SearchBarProps> = ({
   onClose,
   onForceClose,
 }) => {
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  const { isMobile } = useKitzeUI();
   const iconSize = isMobile ? 24 : 20;
   const inputRef = useRef<HTMLInputElement>(null);
 

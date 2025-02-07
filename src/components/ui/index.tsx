@@ -9,3 +9,16 @@ export * from "./Popover";
 export * from "./ContextMenu";
 export * from "./Input";
 export * from "./Spinner";
+
+export {
+  Select,
+  SelectGroup,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectLabel,
+  SelectItem,
+  SelectSeparator,
+  SelectScrollUpButton,
+  SelectScrollDownButton,
+} from './Select'

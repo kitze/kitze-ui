@@ -58,7 +58,10 @@ export const CustomButton: ReactFC<CustomButtonProps> = ({
     <Button
       href={linkHref}
       as={(Component || "button") as any}
-      className={cn("gap-1.5 cursor-pointer relative", className)}
+      className={cn(
+        "gap-1.5 transition-all duration-100 cursor-pointer relative",
+        className
+      )}
       disabled={disabled || loading}
       {...linkProps}
       {...props}

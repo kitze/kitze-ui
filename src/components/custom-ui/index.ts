@@ -48,3 +48,6 @@ export * from "./Kanban/index";
 export * from "./Avatar";
 export * from "./Twemoji";
 export * from "./CircleIcon";
+export * from "./CustomSelect";
+
+export * from './ProBadge';

@@ -10,6 +10,7 @@ export type CustomMenuItemProps = LinkableProps & {
   icon?: React.ComponentType<{ className?: string }>;
   iconClassName?: string;
   children: React.ReactNode;
+  preventPropagation?: boolean;
 };
 
 export const CustomMenuItem: ReactFC<CustomMenuItemProps> = ({
@@ -21,6 +22,7 @@ export const CustomMenuItem: ReactFC<CustomMenuItemProps> = ({
   iconClassName = "h-4 w-4",
   href,
   external,
+  preventPropagation,
   ...props
 }) => {
   const { Component, href: linkHref, linkProps } = useLinkableComponent({
@@ -28,6 +30,13 @@ export const CustomMenuItem: ReactFC<CustomMenuItemProps> = ({
     external,
     ...props,
   });
+
+  const handleClick = (e: React.MouseEvent) => {
+    if (preventPropagation) {
+      e.stopPropagation();
+    }
+    onClick?.();
+  };
 
   const MenuItem = (
     <DropdownMenuPrimitive.Item
@@ -39,7 +48,7 @@ export const CustomMenuItem: ReactFC<CustomMenuItemProps> = ({
         }
       )}
       disabled={disabled}
-      onClick={onClick}
+      onClick={handleClick}
     >
       {Icon && <Icon className={cn(iconClassName)} />}
       {children}

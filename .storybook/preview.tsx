@@ -4,9 +4,10 @@ import type { Preview } from "@storybook/react";
 import { themes } from "@storybook/theming";
 import "../src/styles/global.css";
 import { cn } from "../src/cn";
+import { KitzeUIProvider } from "../src/context/KitzeUIContext";
 
-// Create a decorator that adds dark mode class
-const withThemeProvider = (Story: any) => {
+// Create a decorator that adds dark mode class and KitzeUI provider
+const withProviders = (Story: any, context: any) => {
   const isDark = useDarkMode();
 
   return (
@@ -15,13 +16,15 @@ const withThemeProvider = (Story: any) => {
         dark: isDark,
       })}
     >
-      <Story />
+      <KitzeUIProvider isMobile={context.globals.viewport === 'mobile'}>
+        <Story />
+      </KitzeUIProvider>
     </div>
   );
 };
 
 const preview: Preview = {
-  decorators: [withThemeProvider],
+  decorators: [withProviders],
   parameters: {
     darkMode: {
       dark: { ...themes.dark },
@@ -33,6 +36,18 @@ const preview: Preview = {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
+      },
+    },
+  },
+  globalTypes: {
+    viewport: {
+      name: 'Viewport',
+      description: 'Device viewport for responsive design',
+      defaultValue: 'desktop',
+      toolbar: {
+        icon: 'mobile',
+        items: ['desktop', 'mobile'],
+        title: 'Viewport',
       },
     },
   },
