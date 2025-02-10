@@ -25,7 +25,7 @@ export const CustomMenuItemDelete: ReactFC<CustomMenuItemVariantProps> = ({
   ...props
 }) => {
   return (
-    <CustomMenuItem icon={LuTrash2} {...props}>
+    <CustomMenuItem icon={LuTrash2}  {...props}>
       {children}
     </CustomMenuItem>
   );

@@ -108,6 +108,7 @@ export const Kanban = <T extends KanbanColumnId>({
               renderItem={renderItem}
               kanbanId={column.id}
               isOver={overColumn === column.id}
+              onAddNew={column.onAddNew}
             />
           ))}
         </div>

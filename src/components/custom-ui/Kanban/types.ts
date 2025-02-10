@@ -10,6 +10,8 @@ export type KanbanColumnConfig<T extends KanbanColumnId = KanbanColumnId> = {
   id: T;
   title: string;
   color?: string;
+  tooltip?: string | React.ReactNode;
+  onAddNew?: () => void;
   classNames: KanbanColumnClassNames;
 };
 

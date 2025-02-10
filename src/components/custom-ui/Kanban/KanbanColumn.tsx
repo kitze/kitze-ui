@@ -14,6 +14,8 @@ import {
   TbChevronLeft as IconChevronLeft,
 } from "react-icons/tb";
 import { usePersistableState } from "@/hooks/usePersistableState";
+import { HelpTooltipIcon } from "../HelpTooltipIcon";
+import { ActionIcon } from "../ActionIcon";
 
 type KanbanColumnProps<T extends KanbanColumnId> = {
   config: KanbanColumnConfig<T>;
@@ -47,6 +49,8 @@ export const KanbanColumn = memo(
       Record<string, boolean>
     >({});
 
+    const { color = "zinc-500" } = config;
+
     const setItemDraggable = (itemId: string, isDraggable: boolean) => {
       setItemDraggableStates((prev) => ({
         ...prev,
@@ -62,11 +66,7 @@ export const KanbanColumn = memo(
             ? "w-12 !p-0 !ml-0 !-mr-6"
             : "min-w-[85vw] md:min-w-[300px] w-[85vw] md:w-[300px]"
         )}
-        style={
-          config.color
-            ? { ["--column-color" as string]: `var(--color-${config.color})` }
-            : undefined
-        }
+        style={{ ["--column-color" as string]: `var(--color-${color})` }}
       >
         <div
           className={cn(
@@ -87,12 +87,15 @@ export const KanbanColumn = memo(
             <div
               className={cn(
                 "w-2 h-2 rounded-full ring-2 transition-colors duration-200",
-                config.color
+                color
                   ? "bg-(--column-color) ring-(--column-color)/30"
                   : config.classNames?.circle
               )}
             />
             <h2 className="font-medium whitespace-nowrap">{config.title}</h2>
+            {config.tooltip && (
+              <HelpTooltipIcon tooltip={config.tooltip as string} size={14} />
+            )}
             {!isCollapsed && (
               <div className="text-sm text-zinc-400">({items.length})</div>
             )}
@@ -100,26 +103,17 @@ export const KanbanColumn = memo(
 
           <div className="horizontal space-x-2">
             {!isCollapsed && (
-              <button
+              <ActionIcon
+                variant="ghost"
                 onClick={() => setIsCollapsed((prev) => !prev)}
-                className="p-1 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800"
-              >
-                <IconChevronLeft
-                  size={20}
-                  className={cn(
-                    "text-zinc-500 transition-transform",
-                    isCollapsed && "rotate-180"
-                  )}
-                />
-              </button>
+                Icon={IconChevronLeft}
+                classNames={{
+                  icon: cn("transition-transform", isCollapsed && "rotate-180"),
+                }}
+              />
             )}
             {!isCollapsed && onAddNew && (
-              <button
-                onClick={onAddNew}
-                className="p-1 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800"
-              >
-                <IconPlus size={20} className="text-zinc-500" />
-              </button>
+              <ActionIcon variant="ghost" onClick={onAddNew} Icon={IconPlus} />
             )}
           </div>
         </div>
@@ -129,7 +123,7 @@ export const KanbanColumn = memo(
             ref={setNodeRef}
             className={cn(
               "vertical space-y-3 p-4 rounded-lg h-full overflow-y-auto transition-colors duration-200",
-              config.color
+              color
                 ? cn(
                     "bg-(--column-color)/10 ring-2 ring-(--column-color)/15",
                     isOver && "bg-(--column-color)/20 ring-(--column-color)/30"
