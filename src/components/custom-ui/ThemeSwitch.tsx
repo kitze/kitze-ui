@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/cn";
 import { HiMoon } from "react-icons/hi";
 import { ReactFC } from "@/types";
+import { useEffect, useState } from "react";
 
 export interface ThemeSwitchProps {
   theme: string;
@@ -16,6 +17,16 @@ export const ThemeSwitch: ReactFC<ThemeSwitchProps> = ({
   toggleTheme,
   className,
 }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div className={cn("h-[34px] w-[60px]", className)} />;
+  }
+
   return (
     <motion.button
       onClick={toggleTheme}

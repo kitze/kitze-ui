@@ -2,6 +2,7 @@ import { useTheme } from "next-themes";
 import { useHotkeys } from "../../../../utils/src/hooks/useHotkeys";
 import { ReactFC } from "@/types";
 import { ThemeSwitch } from "./ThemeSwitch";
+import { useMounted } from "../../hooks/useMounted";
 import {
   ThemeSwitchMinimal,
   ThemeSwitchMinimalProps,
@@ -17,12 +18,11 @@ export const ThemeSwitchNextThemes: ReactFC<ThemeSwitchNextThemesProps> = ({
   const { theme, setTheme } = useTheme();
   const isDark = theme === "dark";
   const toggleTheme = () => setTheme(isDark ? "light" : "dark");
+  const mounted = useMounted();
 
-  useHotkeys({
-    x: () => {
-      toggleTheme();
-    },
-  });
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <ThemeSwitch
@@ -38,6 +38,12 @@ export const ThemeSwitchNextThemes: ReactFC<ThemeSwitchNextThemesProps> = ({
 export const ThemeSwitchNextThemesMinimal: ReactFC<
   Omit<ThemeSwitchMinimalProps, "theme" | "setTheme">
 > = (props) => {
-  const { theme, setTheme } = useTheme();
-  return <ThemeSwitchMinimal {...props} />;
+  const mounted = useMounted();
+  const { theme = "light", setTheme } = useTheme();
+
+  if (!mounted) {
+    return null;
+  }
+
+  return <ThemeSwitchMinimal theme={theme} setTheme={setTheme} {...props} />;
 };
