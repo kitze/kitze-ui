@@ -42,7 +42,7 @@ export const VaulMenuItem: ReactFC<VaulMenuItemProps> = ({
   const content = (
     <div
       className={cn(
-        "flex items-center gap-4 px-4 py-4",
+        "h gap-4 p-4",
         "text-foreground",
         "active:bg-muted",
         "touch-manipulation",
@@ -58,7 +58,7 @@ export const VaulMenuItem: ReactFC<VaulMenuItemProps> = ({
             classNames.icon
           )}
         >
-          <Icon className="w-5 h-5" />
+          <Icon className="size-5" />
         </div>
       )}
       <span

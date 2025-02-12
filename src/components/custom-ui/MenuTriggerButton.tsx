@@ -20,15 +20,17 @@ export type MenuTriggerButtonProps = Omit<ActionIconProps, "Icon"> & {
   };
   absolute?: boolean;
   onParentHover?: boolean;
+  ref?: any;
 };
 
 export const MenuTriggerButton: ReactFC<MenuTriggerButtonProps> = ({
   icon = "menu",
-  preventClick = true,
+  preventClick = false,
   onClick,
   classNames,
   absolute = false,
   onParentHover = false,
+  ref,
   ...props
 }) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -41,6 +43,7 @@ export const MenuTriggerButton: ReactFC<MenuTriggerButtonProps> = ({
 
   return (
     <ActionIcon
+      ref={ref}
       Icon={iconMap[icon]}
       onClick={handleClick}
       variant="ghost"

@@ -2,6 +2,7 @@ import { LuLoader, LuLoaderCircle } from "react-icons/lu";
 import { ImSpinner9 } from "react-icons/im";
 import { cn } from "@/cn";
 import { ReactFC } from "../../types";
+import { Suspensed } from "../custom-ui/Suspensed";
 
 const variants = {
   default: LuLoader,
@@ -36,20 +37,104 @@ export interface SpinnerProps {
   className?: string;
 }
 
-export const Spinner: ReactFC<SpinnerProps> = ({ 
+export const Spinner: ReactFC<SpinnerProps> = ({
   variant = "default",
   size = "md",
-  className 
+  className,
 }) => {
   const SpinnerIcon = variants[variant];
 
   return (
-    <SpinnerIcon 
-      className={cn(
-        "animate-spin text-foreground/50",
-        sizes[size],
-        className
-      )} 
+    <SpinnerIcon
+      className={cn("animate-spin text-foreground/50", sizes[size], className)}
     />
+  );
+};
+
+export interface FullPageSpinnerProps extends SpinnerProps {}
+
+export const FullPageSpinner: ReactFC<FullPageSpinnerProps> = ({
+  size = "xl",
+  ...props
+}) => {
+  return (
+    <div className="min-h-screen min-w-screen flex items-center justify-center">
+      <Spinner size={size} {...props} />
+    </div>
+  );
+};
+
+export interface FillHeightSpinnerProps extends SpinnerProps {
+  /**
+   * Optional className for the wrapper div
+   */
+  wrapperClassName?: string;
+}
+
+export const FillHeightSpinner: ReactFC<FillHeightSpinnerProps> = ({
+  size = "xl",
+  wrapperClassName,
+  ...props
+}) => {
+  return (
+    <div
+      className={cn(
+        "flex-1 flex w-full items-center justify-center",
+        wrapperClassName
+      )}
+    >
+      <Spinner size={size} {...props} />
+    </div>
+  );
+};
+
+export interface SuspenseFullScreenProps {
+  children: React.ReactNode;
+  force?: boolean;
+  /**
+   * The size of the spinner
+   * @default "xl"
+   */
+  size?: SpinnerProps["size"];
+}
+
+export const SuspenseFullScreen: ReactFC<SuspenseFullScreenProps> = ({
+  children,
+  force,
+  size = "xl",
+}) => {
+  return (
+    <Suspensed fallback={<FullPageSpinner size={size} />} force={force}>
+      {children}
+    </Suspensed>
+  );
+};
+
+export interface SuspenseFillHeightProps
+  extends Omit<FillHeightSpinnerProps, "size"> {
+  children: React.ReactNode;
+  force?: boolean;
+  /**
+   * The size of the spinner
+   * @default "xl"
+   */
+  size?: SpinnerProps["size"];
+}
+
+export const SuspenseFillHeight: ReactFC<SuspenseFillHeightProps> = ({
+  children,
+  force,
+  size = "xl",
+  wrapperClassName,
+}) => {
+  return (
+    <Suspensed
+      fallback={
+        <FillHeightSpinner size={size} wrapperClassName={wrapperClassName} />
+      }
+      force={force}
+    >
+      {children}
+    </Suspensed>
   );
 };

@@ -56,3 +56,5 @@ export * from "./MenuTriggerButton";
 
 export * from "./Suspensed";
 export * from "./SuspenseSpinner";
+
+export * from "./ModalManager";

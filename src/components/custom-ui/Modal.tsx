@@ -10,6 +10,7 @@ import {
   DialogTrigger,
   DialogClose,
 } from "../ui/Dialog";
+import { useControlledOpen } from "../../hooks/useControlledOpen";
 
 interface ModalProps {
   trigger?: React.ReactNode;
@@ -20,6 +21,8 @@ interface ModalProps {
   onSubmit?: () => void;
   submitText?: string;
   cancelText?: string;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
 export const Modal: ReactFC<ModalProps> = ({
@@ -31,12 +34,21 @@ export const Modal: ReactFC<ModalProps> = ({
   onSubmit,
   submitText = "Submit",
   cancelText = "Cancel",
+  open,
+  onOpenChange,
 }) => {
+  const { isOpen, setIsOpen } = useControlledOpen({
+    open,
+    onOpenChange,
+  });
+
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <button className="text-sm font-medium">{trigger}</button>
-      </DialogTrigger>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      {trigger && (
+        <DialogTrigger asChild>
+          <button className="text-sm font-medium">{trigger}</button>
+        </DialogTrigger>
+      )}
       <DialogContent className="sm:max-w-[425px]">
         {title && (
           <DialogHeader>

@@ -19,6 +19,7 @@ export interface ActionIconProps
   iconSize?: number;
   loading?: boolean;
   classNames?: ActionIconClassNames;
+  ref?: any;
 }
 
 export const ActionIcon: ReactFC<ActionIconProps> = ({
@@ -31,10 +32,12 @@ export const ActionIcon: ReactFC<ActionIconProps> = ({
   classNames = {},
   variant = "secondary",
   disabled,
+  ref,
   ...props
 }) => {
   const button = (
     <Button
+      ref={ref}
       onClick={onClick}
       title={title}
       variant={variant}

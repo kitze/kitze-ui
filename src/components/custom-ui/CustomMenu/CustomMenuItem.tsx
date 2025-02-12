@@ -5,6 +5,9 @@ import {
   useLinkableComponent,
   LinkableProps,
 } from "../../../hooks/useLinkableComponent";
+import { useKitzeUI } from "@/context/KitzeUIContext";
+import { VaulMenuItem } from "../VaulMenuItem";
+import { useCustomMenu } from "./CustomMenuContext";
 
 export type CustomMenuItemProps = LinkableProps & {
   className?: string;
@@ -28,6 +31,8 @@ export const CustomMenuItem: ReactFC<CustomMenuItemProps> = ({
   preventPropagation,
   ...props
 }) => {
+  const { isMobile } = useKitzeUI();
+  const { responsive } = useCustomMenu();
   const {
     Component,
     href: linkHref,
@@ -45,6 +50,26 @@ export const CustomMenuItem: ReactFC<CustomMenuItemProps> = ({
     onClick?.();
   };
 
+  // If we're on mobile and responsive is enabled, use VaulMenuItem
+  if (isMobile && responsive) {
+    return (
+      <VaulMenuItem
+        href={href}
+        icon={Icon as any}
+        title={children as string}
+        onClick={onClick}
+        closeOnClick
+        classNames={{
+          root: cn(className, {
+            "opacity-50 pointer-events-none": disabled,
+          }),
+          icon: iconClassName,
+        }}
+      />
+    );
+  }
+
+  // Otherwise use the default DropdownMenuItem
   const MenuItem = (
     <DropdownMenuPrimitive.Item
       className={cn(
