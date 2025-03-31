@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useVaul } from "./VaulContext";
 import { IconType } from "react-icons";
 import { ReactFC } from "@/types";
+import { useClickWithConfirm } from "@/hooks/useClickWithConfirm";
 
 export interface VaulMenuItemClassNames {
   root?: string;
@@ -19,6 +20,7 @@ export interface VaulMenuItemProps {
   iconColorClass?: string;
   classNames?: VaulMenuItemClassNames;
   closeOnClick?: boolean;
+  inlineConfirm?: boolean;
 }
 
 export const VaulMenuItem: ReactFC<VaulMenuItemProps> = ({
@@ -29,15 +31,24 @@ export const VaulMenuItem: ReactFC<VaulMenuItemProps> = ({
   iconColorClass,
   classNames = {},
   closeOnClick,
+  inlineConfirm,
 }) => {
   const vaulContext = useVaul();
-
-  const handleClick = () => {
-    if (closeOnClick) {
-      vaulContext.close();
-    }
-    onClick?.();
-  };
+  const { isConfirming, handleClick, resetConfirm } = useClickWithConfirm({
+    onClick: () => {
+      if (!inlineConfirm || isConfirming) {
+        console.log("VaulMenuItem executing action");
+        if (closeOnClick) {
+          console.log("VaulMenuItem closing menu");
+          vaulContext.close();
+        }
+        onClick?.();
+      } else {
+        console.log("VaulMenuItem skipping action - waiting for confirmation");
+      }
+    },
+    inlineConfirm,
+  });
 
   const content = (
     <div
@@ -48,7 +59,13 @@ export const VaulMenuItem: ReactFC<VaulMenuItemProps> = ({
         "touch-manipulation",
         classNames.root
       )}
-      onClick={handleClick}
+      onClick={(e) => {
+        console.log("VaulMenuItem div clicked");
+        e.preventDefault();
+        e.stopPropagation();
+        handleClick(e);
+      }}
+      onPointerLeave={resetConfirm}
     >
       {Icon && (
         <div
@@ -64,7 +81,7 @@ export const VaulMenuItem: ReactFC<VaulMenuItemProps> = ({
       <span
         className={cn("text-lg font-medium text-foreground", classNames.title)}
       >
-        {title}
+        {isConfirming ? "Sure?" : title}
       </span>
     </div>
   );

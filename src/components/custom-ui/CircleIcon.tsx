@@ -1,5 +1,5 @@
 import { cn } from "@/cn";
-import { Size, ReactFC } from "@/types";
+import { ReactFC } from "@/types";
 import { IconType } from "react-icons";
 import { cva, type VariantProps } from "class-variance-authority";
 

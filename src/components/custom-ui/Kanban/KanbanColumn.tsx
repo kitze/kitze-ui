@@ -16,6 +16,7 @@ import {
 import { usePersistableState } from "@/hooks/usePersistableState";
 import { HelpTooltipIcon } from "../HelpTooltipIcon";
 import { ActionIcon } from "../ActionIcon";
+import { NewItemCard } from "../NewItemCard";
 
 type KanbanColumnProps<T extends KanbanColumnId> = {
   config: KanbanColumnConfig<T>;
@@ -112,7 +113,7 @@ export const KanbanColumn = memo(
                 }}
               />
             )}
-            {!isCollapsed && onAddNew && (
+            {!isCollapsed && onAddNew && !config.allowCreateNew && (
               <ActionIcon variant="ghost" onClick={onAddNew} Icon={IconPlus} />
             )}
           </div>
@@ -134,6 +135,21 @@ export const KanbanColumn = memo(
                   )
             )}
           >
+            {config.allowCreateNew && onAddNew && (
+              <NewItemCard
+                onClick={onAddNew}
+                title={`Create ${config.title}`}
+                loading={config.loading}
+                layout="horizontal"
+                classNames={{
+                  root: cn(
+                    "min-h-[48px]",
+                    color &&
+                      "hover:bg-(--column-color)/20 hover:border-(--column-color)/30"
+                  ),
+                }}
+              />
+            )}
             <SortableContext
               items={items.map((item) => item.id)}
               strategy={verticalListSortingStrategy}

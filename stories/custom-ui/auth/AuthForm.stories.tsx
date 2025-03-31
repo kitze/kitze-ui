@@ -1,11 +1,18 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { AuthForm, AuthFormDivider, EmailInput, PasswordInput, LoginGithubButton, CustomButton } from '@kitze/ui';
+import { Meta, StoryObj } from "@storybook/react";
+import {
+  AuthForm,
+  AuthFormDivider,
+  EmailInput,
+  PasswordInput,
+  LoginGithubButton,
+  CustomButton,
+} from "../../../src/components/custom-ui";
 
 const meta = {
-  title: 'Custom UI/Auth/AuthForm',
+  title: "Custom UI/Auth/AuthForm",
   component: AuthForm,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
 } satisfies Meta<typeof AuthForm>;
 
@@ -14,8 +21,8 @@ type Story = StoryObj<typeof meta>;
 
 export const LoginForm: Story = {
   args: {
-    title: 'Welcome back',
-    subtitle: 'Sign in to your account to continue',
+    title: "Welcome back",
+    subtitle: "Sign in to your account to continue",
     children: (
       <>
         <EmailInput autoFocus />
@@ -40,8 +47,8 @@ export const LoginForm: Story = {
 
 export const SignupForm: Story = {
   args: {
-    title: 'Create an account',
-    subtitle: 'Join to track and manage your projects',
+    title: "Create an account",
+    subtitle: "Join to track and manage your projects",
     children: (
       <>
         <EmailInput autoFocus />

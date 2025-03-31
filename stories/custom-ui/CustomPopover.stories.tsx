@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { CustomPopover } from "@/components/custom-ui";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button/Button";
 
 const meta = {
   title: "Custom UI/CustomPopover",
@@ -31,7 +31,9 @@ export const CustomAlignment: Story = {
 export const CustomOffset: Story = {
   args: {
     trigger: <Button>More Offset</Button>,
-    content: <div className="v-2">This popover has more offset from the trigger</div>,
+    content: (
+      <div className="v-2">This popover has more offset from the trigger</div>
+    ),
     sideOffset: 8,
   },
 };

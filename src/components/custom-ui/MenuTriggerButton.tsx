@@ -1,6 +1,7 @@
 import { ReactFC } from "@/types";
 import { cn } from "@/cn";
-import { ActionIcon, ActionIconProps } from "./ActionIcon";
+import { Button } from "@/components/ui/Button/Button";
+import { ButtonProps } from "@/components/ui/Button/Button.types";
 import { HiMenu, HiDotsVertical, HiDotsHorizontal } from "react-icons/hi";
 
 export type MenuTriggerIconType = "menu" | "dots-vertical" | "dots-horizontal";
@@ -11,7 +12,7 @@ const iconMap = {
   "dots-horizontal": HiDotsHorizontal,
 } as const;
 
-export type MenuTriggerButtonProps = Omit<ActionIconProps, "Icon"> & {
+export type MenuTriggerButtonProps = Omit<ButtonProps, "icon"> & {
   icon?: MenuTriggerIconType;
   preventClick?: boolean;
   classNames?: {
@@ -20,7 +21,6 @@ export type MenuTriggerButtonProps = Omit<ActionIconProps, "Icon"> & {
   };
   absolute?: boolean;
   onParentHover?: boolean;
-  ref?: any;
 };
 
 export const MenuTriggerButton: ReactFC<MenuTriggerButtonProps> = ({
@@ -30,7 +30,6 @@ export const MenuTriggerButton: ReactFC<MenuTriggerButtonProps> = ({
   classNames,
   absolute = false,
   onParentHover = false,
-  ref,
   ...props
 }) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -42,16 +41,16 @@ export const MenuTriggerButton: ReactFC<MenuTriggerButtonProps> = ({
   };
 
   return (
-    <ActionIcon
-      ref={ref}
-      Icon={iconMap[icon]}
-      onClick={handleClick}
+    <Button
       variant="ghost"
+      size="sm"
+      icon={iconMap[icon]}
+      onClick={handleClick}
+      className={cn(classNames?.root, {
+        "absolute top-2 right-2 z-10": absolute,
+        "opacity-0 group-hover:opacity-100 transition-opacity": onParentHover,
+      })}
       classNames={{
-        root: cn(classNames?.root, {
-          "absolute top-2 right-2 z-10": absolute,
-          "opacity-0 group-hover:opacity-100 transition-opacity": onParentHover,
-        }),
         icon: classNames?.icon,
       }}
       {...props}

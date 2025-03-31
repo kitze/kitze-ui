@@ -11,75 +11,85 @@ const meta = {
 } satisfies Meta<typeof Badge>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Badge>;
 
 export const Default: Story = {
   args: {
     children: "Badge",
-    color: "blue-500",
+    color: "primary",
   },
-};
-
-export const Ghost: Story = {
-  args: {
-    children: "Ghost Badge",
-    color: "red-500",
-    variant: "ghost",
-  },
-};
-
-export const Outline: Story = {
-  args: {
-    children: "Outline Badge",
-    color: "green-500",
-    variant: "outline",
-  },
-};
-
-export const Colors: Story = {
-  render: () => (
-    <div className="h space-x-2">
-      <Badge color="blue-500">Blue</Badge>
-      <Badge color="red-500">Red</Badge>
-      <Badge color="green-500">Green</Badge>
-      <Badge color="amber-500">Amber</Badge>
-      <Badge color="purple-500">Purple</Badge>
-      <Badge color="pink-500">Pink</Badge>
-    </div>
-  ),
-};
-
-export const DarkColors: Story = {
-  render: () => (
-    <div className="h space-x-2">
-      <Badge color="blue-500" darkColor="blue-400">Blue</Badge>
-      <Badge color="red-500" darkColor="red-400">Red</Badge>
-      <Badge color="green-500" darkColor="green-400">Green</Badge>
-      <Badge color="amber-500" darkColor="amber-400">Amber</Badge>
-      <Badge color="purple-500" darkColor="purple-400">Purple</Badge>
-      <Badge color="pink-500" darkColor="pink-400">Pink</Badge>
-    </div>
-  ),
 };
 
 export const Variants: Story = {
   render: () => (
-    <div className="v space-y-4">
-      <div className="h space-x-2">
-        <Badge color="blue-500" darkColor="blue-400" variant="default">Default</Badge>
-        <Badge color="red-500" darkColor="red-400" variant="default">Default</Badge>
-        <Badge color="green-500" darkColor="green-400" variant="default">Default</Badge>
-      </div>
-      <div className="h space-x-2">
-        <Badge color="blue-500" darkColor="blue-400" variant="outline">Outline</Badge>
-        <Badge color="red-500" darkColor="red-400" variant="outline">Outline</Badge>
-        <Badge color="green-500" darkColor="green-400" variant="outline">Outline</Badge>
-      </div>
-      <div className="h space-x-2">
-        <Badge color="blue-500" darkColor="blue-400" variant="ghost">Ghost</Badge>
-        <Badge color="red-500" darkColor="red-400" variant="ghost">Ghost</Badge>
-        <Badge color="green-500" darkColor="green-400" variant="ghost">Ghost</Badge>
-      </div>
+    <div className="flex gap-4">
+      <Badge color="primary" variant="default">
+        Default
+      </Badge>
+      <Badge color="primary" variant="outline">
+        Outline
+      </Badge>
+      <Badge color="primary" variant="ghost">
+        Ghost
+      </Badge>
+    </div>
+  ),
+};
+
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex items-center gap-4">
+      <Badge color="primary" size="xs">
+        Extra Small
+      </Badge>
+      <Badge color="primary" size="sm">
+        Small
+      </Badge>
+      <Badge color="primary" size="md">
+        Medium
+      </Badge>
+      <Badge color="primary" size="lg">
+        Large
+      </Badge>
+      <Badge color="primary" size="xl">
+        Extra Large
+      </Badge>
+    </div>
+  ),
+};
+
+export const Colors: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-4">
+      <Badge color="primary">Primary</Badge>
+      <Badge color="secondary">Secondary</Badge>
+      <Badge color="success">Success</Badge>
+      <Badge color="warning">Warning</Badge>
+      <Badge color="error">Error</Badge>
+      <Badge color="info">Info</Badge>
+    </div>
+  ),
+};
+
+export const CustomColors: Story = {
+  render: () => (
+    <div className="flex gap-4">
+      <Badge color="violet">Violet</Badge>
+      <Badge color="amber">Amber</Badge>
+      <Badge color="emerald">Emerald</Badge>
+    </div>
+  ),
+};
+
+export const WithDarkColors: Story = {
+  render: () => (
+    <div className="flex gap-4">
+      <Badge color="primary" darkColor="secondary">
+        Different Dark Color
+      </Badge>
+      <Badge color="success" darkColor="info">
+        Custom Dark Theme
+      </Badge>
     </div>
   ),
 };

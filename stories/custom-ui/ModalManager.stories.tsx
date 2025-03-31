@@ -3,7 +3,7 @@ import {
   ModalManager,
   useModal,
 } from "../../src/components/custom-ui/ModalManager";
-import { Button } from "../../src/components/ui/Button";
+import { Button } from "../../src/components/ui/Button/Button";
 
 const meta = {
   title: "Custom UI/ModalManager",

@@ -88,6 +88,13 @@ export const Kanban = <T extends KanbanColumnId>({
 
   const activeItem = items.find((item) => item.id === activeId);
 
+  // Sort items by createdAt in descending order (newest first)
+  const sortedItems = [...items].sort((a, b) => {
+    const dateA = new Date(a.createdAt).getTime();
+    const dateB = new Date(b.createdAt).getTime();
+    return dateB - dateA;
+  });
+
   return (
     <DndContext
       sensors={sensors}
@@ -97,12 +104,12 @@ export const Kanban = <T extends KanbanColumnId>({
       collisionDetection={pointerWithin}
     >
       <div className="h-full w-full overflow-x-auto">
-        <div className="h-full inline-flex gap-4 py-4 min-w-max">
+        <div className="h-full inline-flex gap-4 min-w-max">
           {config.columns.map((column) => (
             <KanbanColumn
               key={column.id}
               config={column}
-              items={items.filter(
+              items={sortedItems.filter(
                 (item) => config.getColumnId(item) === column.id
               )}
               renderItem={renderItem}

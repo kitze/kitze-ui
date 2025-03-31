@@ -1,15 +1,22 @@
 import { useRef } from "react";
 import { HiSearch, HiX } from "react-icons/hi";
-import { ReactFC } from "../../types";
-import { useKitzeUI } from "../../context/KitzeUIContext";
+import { ReactFC } from "@/types";
+import { Input, InputClassNames } from "@/components/ui/Input";
+import { Button } from "@/components/ui/Button/Button";
 
-interface SearchBarProps {
+export interface SearchBarClassNames extends InputClassNames {
+  clearButton?: string;
+}
+
+export interface SearchBarProps {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
   autoFocus?: boolean;
   onClose?: () => void;
   onForceClose?: () => void;
+  className?: string;
+  classNames?: SearchBarClassNames;
 }
 
 export const SearchBar: ReactFC<SearchBarProps> = ({
@@ -19,9 +26,9 @@ export const SearchBar: ReactFC<SearchBarProps> = ({
   autoFocus,
   onClose,
   onForceClose,
+  className,
+  classNames = {},
 }) => {
-  const { isMobile } = useKitzeUI();
-  const iconSize = isMobile ? 24 : 20;
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleClear = () => {
@@ -31,31 +38,29 @@ export const SearchBar: ReactFC<SearchBarProps> = ({
   };
 
   return (
-    <div className="relative flex items-center w-full">
-      <input
-        ref={inputRef}
-        type="text"
-        placeholder={placeholder}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        onBlur={() => onClose?.()}
-        className="w-full px-4 py-2 pl-10 text-sm border border-gray-200 rounded-lg 
-          focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
-        autoFocus={autoFocus}
-      />
-      <HiSearch
-        className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-        size={iconSize}
-      />
-      {value && (
-        <button
-          onClick={handleClear}
-          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 
-            hover:text-gray-600 transition-colors"
-        >
-          <HiX size={iconSize} />
-        </button>
-      )}
-    </div>
+    <Input
+      ref={inputRef}
+      type="text"
+      placeholder={placeholder}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      onBlur={() => onClose?.()}
+      autoFocus={autoFocus}
+      className={className}
+      classNames={classNames}
+      leftIcon={HiSearch}
+      rightItem={
+        value ? (
+          <Button
+            variant="ghost"
+            size="xs"
+            circle
+            icon={HiX}
+            onClick={handleClear}
+            className={classNames.clearButton}
+          />
+        ) : null
+      }
+    />
   );
 };

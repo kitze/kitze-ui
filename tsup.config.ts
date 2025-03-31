@@ -4,7 +4,7 @@ export default defineConfig({
   entry: ["./index.ts"],
   dts: true,
   clean: true,
-  sourcemap: true,
+  sourcemap: false,
   format: ["esm"],
   ignoreWatch: [".storybook", "stories"],
   external: [

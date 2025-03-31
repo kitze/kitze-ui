@@ -16,10 +16,11 @@ for icons we use react-icons. ALWAYS. don't use tabler icons or lucide icons or 
 - we use utils from @tailwind.css
 - clases NOT TO USE: flex, col, row, items-center, justify-center, etc.
 - classes to use:
-- "v" if you need flex vertical, with space-y-2
-- "h" if you need flex horizontal, with space-x-2
-- 'vertical' if you need flex vertical with custom space-y-
-- 'horizontal' if you need flex horizontal with custom space-x-
+- we use GAP instead of space-x and space-y
+- "v" if you need flex vertical, with gap-2
+- "h" if you need flex horizontal, with gap-2
+- 'vertical' if you need flex vertical with custom gap
+- 'horizontal' if you need flex horizontal with custom gap
 - DO NOT INVENT CLASSES LIKE v-10 and h-20, they don't exist
 - we use cn for conditional styles (if needed, and prefer the cn object syntax like cn('default-classes-here', {
   'some-classes-here': booleanCondition

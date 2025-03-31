@@ -6,36 +6,62 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogFooter,
   DialogTrigger,
-  DialogClose,
 } from "../ui/Dialog";
 import { useControlledOpen } from "../../hooks/useControlledOpen";
 
-interface ModalProps {
+export type ModalSize =
+  | "sm"
+  | "md"
+  | "lg"
+  | "xl"
+  | "2xl"
+  | "3xl"
+  | "4xl"
+  | "5xl"
+  | "full";
+
+export type ModalClassNames = {
+  root?: string;
+  content?: string;
+  header?: string;
+  title?: string;
+  body?: string;
+  footer?: string;
+  submitButton?: string;
+  cancelButton?: string;
+};
+
+export interface ModalProps {
   trigger?: React.ReactNode;
   title?: string;
   children: React.ReactNode;
-  showCancel?: boolean;
-  onCancel?: () => void;
-  onSubmit?: () => void;
-  submitText?: string;
-  cancelText?: string;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
+  size?: ModalSize;
+  classNames?: ModalClassNames;
 }
+
+const sizeToMaxWidth: Record<ModalSize, string> = {
+  sm: "sm:max-w-[425px]",
+  md: "sm:max-w-[550px]",
+  lg: "sm:max-w-[680px]",
+  xl: "sm:max-w-[800px]",
+  "2xl": "sm:max-w-[1024px]",
+  "3xl": "sm:max-w-[1280px]",
+  "4xl": "sm:max-w-[1536px]",
+  "5xl": "sm:max-w-[1920px]",
+  full: "sm:max-w-[100vw]",
+};
 
 export const Modal: ReactFC<ModalProps> = ({
   trigger = "Open",
   title,
   children,
-  showCancel = true,
-  onCancel,
-  onSubmit,
-  submitText = "Submit",
-  cancelText = "Cancel",
   open,
   onOpenChange,
+  size = "sm",
+  classNames = {},
 }) => {
   const { isOpen, setIsOpen } = useControlledOpen({
     open,
@@ -49,42 +75,19 @@ export const Modal: ReactFC<ModalProps> = ({
           <button className="text-sm font-medium">{trigger}</button>
         </DialogTrigger>
       )}
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent
+        className={cn(
+          sizeToMaxWidth[size],
+          classNames.root,
+          classNames.content
+        )}
+      >
         {title && (
-          <DialogHeader>
-            <DialogTitle>{title}</DialogTitle>
+          <DialogHeader className={classNames.header}>
+            <DialogTitle className={classNames.title}>{title}</DialogTitle>
           </DialogHeader>
         )}
-        <div className="py-4">{children}</div>
-        <DialogFooter className="gap-2">
-          {onSubmit && (
-            <button
-              onClick={onSubmit}
-              className={cn(
-                "px-4 py-2 text-sm font-medium text-white",
-                "bg-violet-600 hover:bg-violet-700",
-                "rounded-md transition-colors"
-              )}
-            >
-              {submitText}
-            </button>
-          )}
-          {showCancel && (
-            <DialogClose asChild>
-              <button
-                onClick={onCancel}
-                className={cn(
-                  "px-4 py-2 text-sm font-medium",
-                  "border border-gray-200",
-                  "rounded-md transition-colors",
-                  "hover:bg-gray-50"
-                )}
-              >
-                {cancelText}
-              </button>
-            </DialogClose>
-          )}
-        </DialogFooter>
+        <div className={cn("py-4", classNames.body)}>{children}</div>
       </DialogContent>
     </Dialog>
   );

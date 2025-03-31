@@ -1,13 +1,13 @@
 import { ReactFC } from "../../../types";
 import {
   ContextCustomMenuItem,
-  ContextMenuItemProps,
+  ContextCustomMenuItemProps,
 } from "./ContextCustomMenuItem";
 import { HiPencil } from "react-icons/hi";
 
 export type ContextMenuItemEditProps = Omit<
-  ContextMenuItemProps,
-  "variant" | "Icon"
+  ContextCustomMenuItemProps,
+  "variant" | "icon"
 >;
 
 export const ContextCustomMenuItemEdit: ReactFC<ContextMenuItemEditProps> = ({
@@ -15,7 +15,7 @@ export const ContextCustomMenuItemEdit: ReactFC<ContextMenuItemEditProps> = ({
   ...props
 }) => {
   return (
-    <ContextCustomMenuItem Icon={HiPencil} {...props}>
+    <ContextCustomMenuItem icon={HiPencil} {...props}>
       {children}
     </ContextCustomMenuItem>
   );

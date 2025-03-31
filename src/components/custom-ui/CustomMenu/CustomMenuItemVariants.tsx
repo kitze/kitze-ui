@@ -2,10 +2,7 @@ import { ReactFC } from "@/types";
 import { CustomMenuItem, CustomMenuItemProps } from "./CustomMenuItem";
 import { LuPencil, LuTrash2 } from "react-icons/lu";
 
-type CustomMenuItemVariantProps = Omit<
-  CustomMenuItemProps,
-  "icon" | "children"
-> & {
+export type CustomMenuItemVariantProps = Omit<CustomMenuItemProps, "icon"> & {
   children?: React.ReactNode;
 };
 
@@ -25,7 +22,7 @@ export const CustomMenuItemDelete: ReactFC<CustomMenuItemVariantProps> = ({
   ...props
 }) => {
   return (
-    <CustomMenuItem icon={LuTrash2}  {...props}>
+    <CustomMenuItem icon={LuTrash2} {...props}>
       {children}
     </CustomMenuItem>
   );

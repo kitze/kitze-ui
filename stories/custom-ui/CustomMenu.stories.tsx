@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { CustomMenu, CustomMenuItem } from "@/components/custom-ui/CustomMenu";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button/Button";
 
 const meta = {
   title: "Custom UI/CustomMenu",
@@ -22,9 +22,7 @@ export const Basic: Story = {
       <CustomMenuItem onClick={() => console.log("Settings clicked")}>
         Settings
       </CustomMenuItem>
-      <CustomMenuItem disabled>
-        Disabled Item
-      </CustomMenuItem>
+      <CustomMenuItem disabled>Disabled Item</CustomMenuItem>
       <CustomMenuItem onClick={() => console.log("Sign out clicked")}>
         Sign out
       </CustomMenuItem>

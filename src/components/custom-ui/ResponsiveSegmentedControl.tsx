@@ -3,13 +3,13 @@ import { SegmentedControl, SegmentedControlProps } from "./SegmentedControl";
 import { VaulMenuItemsProps } from "./VaulMenuItems";
 import { ResponsiveSegmentedControlMobile } from "./ResponsiveSegmentedControlMobile";
 
-export interface ResponsiveSegmentedControlProps<T extends string>
+export interface ResponsiveSegmentedControlProps<T extends string = string>
   extends SegmentedControlProps<T> {
   vaulMenuItemsProps?: Partial<VaulMenuItemsProps>;
   closeOnClick?: boolean;
 }
 
-export const ResponsiveSegmentedControl = <T extends string>({
+export const ResponsiveSegmentedControl = <T extends string = string>({
   vaulMenuItemsProps,
   closeOnClick = true,
   ...props
@@ -26,5 +26,5 @@ export const ResponsiveSegmentedControl = <T extends string>({
     );
   }
 
-  return <SegmentedControl {...props} />;
+  return <SegmentedControl<T> {...props} />;
 };

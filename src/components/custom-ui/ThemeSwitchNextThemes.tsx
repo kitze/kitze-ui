@@ -1,5 +1,4 @@
 import { useTheme } from "next-themes";
-import { useHotkeys } from "../../../../utils/src/hooks/useHotkeys";
 import { ReactFC } from "@/types";
 import { ThemeSwitch } from "./ThemeSwitch";
 import { useMounted } from "../../hooks/useMounted";

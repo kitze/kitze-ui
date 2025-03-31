@@ -1,11 +1,12 @@
 import React from "react";
 import { ReactFC } from "../../types";
-import { Modal } from "./Modal";
+import { Modal, ModalProps } from "./Modal";
 import { CustomVaul, CustomVaulProps } from "./CustomVaul";
 import { useKitzeUI } from "../../context/KitzeUIContext";
 import { useControlledOpen } from "../../hooks/useControlledOpen";
 
-export interface ResponsiveModalProps {
+export interface ResponsiveModalProps
+  extends Pick<ModalProps, "size" | "classNames"> {
   trigger?: React.ReactNode;
   title?: string;
   children: React.ReactNode;
